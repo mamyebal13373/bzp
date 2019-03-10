@@ -5,6 +5,7 @@ import sys
 import vk_api
 import telebot
 import configparser
+from time import sleep
 import logging
 from telebot.types import InputMediaPhoto
 
@@ -109,7 +110,7 @@ def check_posts_vk():
 
         if INCLUDE_LINK:
             post_url = "https://vk.com/" + DOMAIN + "?w=wall" + \
-                str(post['owner_id']) + '_' + str(post['id'])
+                       str(post['owner_id']) + '_' + str(post['id'])
             links.insert(0, post_url)
         text = '\n'.join([text] + links)
         send_posts_text(text)
@@ -192,7 +193,7 @@ def split(text):
 # Изображения
 def send_posts_img(img):
     global bot
-    
+
     # Находим картинку с максимальным качеством
     url = max(img["sizes"], key=lambda size: size["type"])["url"]
     bot.send_photo(CHANNEL, url)
