@@ -150,8 +150,9 @@ def check_posts_vk():
                 if copy_add['type'] == 'photo':
                     attach = copy_history['attachments']
                     for img in attach:
-                        image = img['photo']
-                        send_posts_img(image)
+                        image = img.get("photo", None)
+                        if image:
+                            send_posts_img(image)
 
         # Записываем id в файл
         config.set('Settings', 'LAST_ID', str(post['id']))
