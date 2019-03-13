@@ -146,13 +146,14 @@ def check_posts_vk():
                     url = link['url']
                     send_posts_text(url)
 
-                # Если это картинки
-                if copy_add['type'] == 'photo':
-                    attach = copy_history['attachments']
-                    for img in attach:
-                        image = img.get("photo", None)
-                        if image:
-                            send_posts_img(image)
+                    # Если это картинки
+                    if copy_add['type'] == 'photo':
+                        attach = copy_history['attachments']
+                        for img in attach:
+                            image = img.get("photo", None)
+                            if image:
+                                send_posts_img(image)
+
 
         # Записываем id в файл
         config.set('Settings', 'LAST_ID', str(post['id']))
